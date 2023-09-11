@@ -13,6 +13,7 @@ import {
 import mockData from "../mockData.json";
 import objToArr from "../utils/objToArr";
 import getTime from "../utils/getTime";
+import CustomToolTip from "./CustomToolTip";
 
 const prevData = objToArr(mockData.response, "date");
 // prevdata 배열을 변환하여 date 속성만 변경
@@ -54,7 +55,7 @@ export default function Chart() {
           domain={[0, 200]}
           label={{ value: "value_area", position: "top", offset: 10 }}
         />
-        <Tooltip />
+        <Tooltip content={<CustomToolTip />} />
         <Legend />
         <Bar dataKey="value_bar" yAxisId="left" fill="#a8a5e6" />
         <Area

@@ -7,3 +7,13 @@
   justify-content: center;
   margin: 50px auto;
 }
+
+.tooltip-container {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  padding: 2px 4px;
+}
+
+.tooltip-title {
+  font-weight: 600;
+}
