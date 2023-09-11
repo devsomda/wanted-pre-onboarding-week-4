@@ -1,10 +1,12 @@
 import "./App.css";
-import ChartData from "./components/ChartData";
+import Chart from "./components/Chart";
+import { TITLE } from "./constants";
 
 function App() {
   return (
     <div className="App">
-      <ChartData />
+      <h2>{TITLE} 데이터</h2>
+      <Chart />
     </div>
   );
 }
