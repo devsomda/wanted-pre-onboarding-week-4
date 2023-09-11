@@ -3,9 +3,13 @@
 }
 
 .chart-container {
+  background-color: white;
+  width: 90%;
+  margin: auto;
+  border: 1px solid gray;
   display: flex;
   justify-content: center;
-  margin: 50px auto;
+  margin: 30px auto;
 }
 
 .tooltip-container {
@@ -16,4 +20,29 @@
 
 .tooltip-title {
   font-weight: 600;
+}
+
+.filter-button-container {
+  background-color: white;
+  height: 100px;
+  width: 90%;
+  margin: auto;
+  border: 1px solid gray;
+}
+
+button {
+  margin: 0 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.focused-button {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.non-focused-button {
+  background-color: white;
 }

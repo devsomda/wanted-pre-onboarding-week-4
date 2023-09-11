@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
   Label,
+  Cell,
 } from "recharts";
 import mockData from "../mockData.json";
 import objToArr from "../utils/objToArr";
@@ -22,7 +23,10 @@ const data = prevData.map((prev) => ({
   date: getTime(prev.date),
 }));
 
-export default function Chart() {
+export default function Chart(props) {
+  const { filteredData } = props;
+  console.log(filteredData);
+
   return (
     <div className="chart-container">
       <ComposedChart
@@ -57,7 +61,18 @@ export default function Chart() {
         />
         <Tooltip content={<CustomToolTip />} />
         <Legend />
-        <Bar dataKey="value_bar" yAxisId="left" fill="#a8a5e6" />
+        <Bar dataKey="value_bar" yAxisId="left">
+          {data.map((entry) => (
+            <Cell
+              key={entry.id}
+              fill={
+                filteredData && filteredData.includes(entry.id)
+                  ? "#5b57a1"
+                  : "#a8a5e6"
+              }
+            />
+          ))}
+        </Bar>
         <Area
           type="monotone"
           dataKey="value_area"
