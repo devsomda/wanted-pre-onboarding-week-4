@@ -24,9 +24,16 @@ export default function Filter() {
     setFilteredIds(newFilteredId);
   };
 
+  const resetFilter = () => {
+    setFilteredIds([]);
+  };
+
   return (
     <div className="filter-button-container">
       <h3>Filter</h3>
+      <button type="button" onClick={resetFilter}>
+        필터 해제
+      </button>
       {idArr.map((id) => (
         <button
           key={id}
