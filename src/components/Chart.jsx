@@ -15,6 +15,7 @@ import mockData from "../mockData.json";
 import objToArr from "../utils/objToArr";
 import getTime from "../utils/getTime";
 import CustomToolTip from "./CustomToolTip";
+import { useFilterContext } from "../context/filterContext";
 
 const prevData = objToArr(mockData.response, "date");
 // prevdata 배열을 변환하여 date 속성만 변경
@@ -23,9 +24,9 @@ const data = prevData.map((prev) => ({
   date: getTime(prev.date),
 }));
 
-export default function Chart(props) {
-  const { filteredData } = props;
-  console.log(filteredData);
+export default function Chart() {
+  const { filteredIds } = useFilterContext();
+  console.log(filteredIds);
 
   return (
     <div className="chart-container">
@@ -66,7 +67,7 @@ export default function Chart(props) {
             <Cell
               key={entry.id}
               fill={
-                filteredData && filteredData.includes(entry.id)
+                filteredIds && filteredIds.includes(entry.id)
                   ? "#5b57a1"
                   : "#a8a5e6"
               }

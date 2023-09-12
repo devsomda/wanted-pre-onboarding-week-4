@@ -1,6 +1,7 @@
 import React from "react";
 import objToArr from "../utils/objToArr";
 import mockData from "../mockData.json";
+import { useFilterContext } from "../context/filterContext";
 
 const prevData = objToArr(mockData.response, "date");
 const idArr = [];
@@ -10,8 +11,8 @@ prevData.map((data) => {
   }
 });
 
-export default function Filter(props) {
-  const { filteredIds, setFilteredIds } = props;
+export default function Filter() {
+  const { filteredIds, setFilteredIds } = useFilterContext();
 
   const filterData = (id) => {
     let newFilteredId;
