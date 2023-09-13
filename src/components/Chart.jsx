@@ -13,9 +13,10 @@ import {
 } from "recharts";
 import CustomToolTip from "./CustomToolTip";
 import { useFilterContext } from "../context/filterContext";
+import { filterData } from "../utils/filterData";
 
 export default function Chart({ data }) {
-  const { filteredIds } = useFilterContext();
+  const { filteredIds, setFilteredIds } = useFilterContext();
 
   const isFiltered = (id) => {
     return filteredIds.includes(id);
@@ -65,6 +66,7 @@ export default function Chart({ data }) {
             <Cell
               key={entry.id}
               fill={isFiltered(entry.id) ? filteredColor : nonFilteredColor}
+              onClick={() => filterData(entry.id, filteredIds, setFilteredIds)}
             />
           ))}
         </Bar>

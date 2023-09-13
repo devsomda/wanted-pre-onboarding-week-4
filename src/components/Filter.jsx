@@ -1,27 +1,14 @@
 import React from "react";
 import { useFilterContext } from "../context/filterContext";
+import { filterData, resetFilter } from "../utils/filterData";
 
 export default function Filter({ idArr }) {
   const { filteredIds, setFilteredIds } = useFilterContext();
 
-  const filterData = (id) => {
-    let newFilteredId;
-    if (!filteredIds.includes(id)) {
-      newFilteredId = [...filteredIds, id];
-    } else {
-      newFilteredId = filteredIds.filter((filteredId) => filteredId !== id);
-    }
-    setFilteredIds(newFilteredId);
-  };
-
-  const resetFilter = () => {
-    setFilteredIds([]);
-  };
-
   return (
     <div className="filter-button-container">
       <h3>Filter</h3>
-      <button type="button" onClick={resetFilter}>
+      <button type="button" onClick={() => resetFilter(setFilteredIds)}>
         필터 해제
       </button>
       {idArr.map((id) => (
@@ -30,7 +17,7 @@ export default function Filter({ idArr }) {
           className={
             filteredIds.includes(id) ? "focused-button" : "non-focused-button"
           }
-          onClick={() => filterData(id)}
+          onClick={() => filterData(id, filteredIds, setFilteredIds)}
         >
           {id}
         </button>
