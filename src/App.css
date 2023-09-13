@@ -1,6 +1,12 @@
 .App {
   text-align: center;
 }
+/* 900px 이상일 때의 스타일 */
+@media screen and (min-width: 900px) {
+  .ui-warning-text {
+    display: none;
+  }
+}
 
 .chart-container {
   background-color: white;
@@ -10,7 +16,7 @@
   display: flex;
   justify-content: center;
   margin: 30px auto;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
 }
 
@@ -26,7 +32,7 @@
 
 .filter-button-container {
   background-color: white;
-  height: 100px;
+  min-height: 100px;
   width: 90%;
   margin: auto;
   border: 1px solid gray;
