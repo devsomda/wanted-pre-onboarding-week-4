@@ -17,6 +17,15 @@ import { useFilterContext } from "../context/filterContext";
 export default function Chart({ data }) {
   const { filteredIds } = useFilterContext();
 
+  const isFiltered = (id) => {
+    return filteredIds.includes(id);
+  };
+  const filteredColor = "#5b57a1";
+  const nonFilteredColor = "#a8a5e6";
+
+  const areaColor = "#6b60ff";
+  const areaBorderColor = "#3943ff";
+
   return (
     <div className="chart-container">
       <ComposedChart
@@ -55,11 +64,7 @@ export default function Chart({ data }) {
           {data.map((entry) => (
             <Cell
               key={entry.id}
-              fill={
-                filteredIds && filteredIds.includes(entry.id)
-                  ? "#5b57a1"
-                  : "#a8a5e6"
-              }
+              fill={isFiltered(entry.id) ? filteredColor : nonFilteredColor}
             />
           ))}
         </Bar>
@@ -67,8 +72,8 @@ export default function Chart({ data }) {
           type="monotone"
           dataKey="value_area"
           yAxisId="right"
-          fill="#6b60ff"
-          stroke="#3943ff"
+          fill={areaColor}
+          stroke={areaBorderColor}
         />
       </ComposedChart>
     </div>
