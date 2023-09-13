@@ -11,20 +11,10 @@ import {
   Label,
   Cell,
 } from "recharts";
-import mockData from "../mockData.json";
-import objToArr from "../utils/objToArr";
-import getTime from "../utils/getTime";
 import CustomToolTip from "./CustomToolTip";
 import { useFilterContext } from "../context/filterContext";
 
-const prevData = objToArr(mockData.response, "date");
-// prevdata 배열을 변환하여 date 속성만 전체 연월일시간 -> 시간으로 변경
-const data = prevData.map((prev) => ({
-  ...prev,
-  date: getTime(prev.date),
-}));
-
-export default function Chart() {
+export default function Chart({ data }) {
   const { filteredIds } = useFilterContext();
 
   return (

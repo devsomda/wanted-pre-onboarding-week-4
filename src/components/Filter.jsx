@@ -1,17 +1,7 @@
 import React from "react";
-import objToArr from "../utils/objToArr";
-import mockData from "../mockData.json";
 import { useFilterContext } from "../context/filterContext";
 
-const prevData = objToArr(mockData.response, "date");
-const idArr = [];
-prevData.map((data) => {
-  if (!idArr.includes(data.id)) {
-    idArr.push(data.id);
-  }
-});
-
-export default function Filter() {
+export default function Filter({ idArr }) {
   const { filteredIds, setFilteredIds } = useFilterContext();
 
   const filterData = (id) => {
