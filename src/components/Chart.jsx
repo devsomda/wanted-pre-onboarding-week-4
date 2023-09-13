@@ -14,6 +14,7 @@ import {
 import CustomToolTip from "./CustomToolTip";
 import { useFilterContext } from "../context/filterContext";
 import { filterData } from "../utils/filterData";
+import { AREA_STANDARD } from "../constants";
 
 export default function Chart({ data }) {
   const { filteredIds, setFilteredIds } = useFilterContext();
@@ -56,7 +57,7 @@ export default function Chart({ data }) {
         <YAxis
           yAxisId="right"
           orientation="right"
-          domain={[0, 200]}
+          domain={[AREA_STANDARD.MIN_STANDARD, AREA_STANDARD.MAX_STANDARD]}
           label={{ value: "value_area", position: "top", offset: 10 }}
         />
         <Tooltip content={<CustomToolTip />} />
