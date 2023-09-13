@@ -9,20 +9,23 @@ import {
   Tooltip,
   Legend,
   Label,
+  Cell,
 } from "recharts";
-import mockData from "../mockData.json";
-import objToArr from "../utils/objToArr";
-import getTime from "../utils/getTime";
 import CustomToolTip from "./CustomToolTip";
+import { useFilterContext } from "../context/filterContext";
 
-const prevData = objToArr(mockData.response, "date");
-// prevdata 배열을 변환하여 date 속성만 변경
-const data = prevData.map((prev) => ({
-  ...prev,
-  date: getTime(prev.date),
-}));
+export default function Chart({ data }) {
+  const { filteredIds } = useFilterContext();
 
-export default function Chart() {
+  const isFiltered = (id) => {
+    return filteredIds.includes(id);
+  };
+  const filteredColor = "#5b57a1";
+  const nonFilteredColor = "#a8a5e6";
+
+  const areaColor = "#6b60ff";
+  const areaBorderColor = "#3943ff";
+
   return (
     <div className="chart-container">
       <ComposedChart
@@ -57,13 +60,20 @@ export default function Chart() {
         />
         <Tooltip content={<CustomToolTip />} />
         <Legend />
-        <Bar dataKey="value_bar" yAxisId="left" fill="#a8a5e6" />
+        <Bar dataKey="value_bar" yAxisId="left">
+          {data.map((entry) => (
+            <Cell
+              key={entry.id}
+              fill={isFiltered(entry.id) ? filteredColor : nonFilteredColor}
+            />
+          ))}
+        </Bar>
         <Area
           type="monotone"
           dataKey="value_area"
           yAxisId="right"
-          fill="#6b60ff"
-          stroke="#3943ff"
+          fill={areaColor}
+          stroke={areaBorderColor}
         />
       </ComposedChart>
     </div>
